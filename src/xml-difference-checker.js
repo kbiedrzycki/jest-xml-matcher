@@ -25,7 +25,7 @@ module.exports = class XMLDifferenceChecker {
       return difference.value[color]
     })
 
-    return differences.join('')
+    return differences.join(``)
   }
 
   hasModifiedLines (difference) {
