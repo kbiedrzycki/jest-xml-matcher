@@ -1,28 +1,19 @@
-require('colors')
-const jsdiff = require('diff')
+const DiffChecker = require('./xml-difference-checker')
 
 expect.extend({
-  toEqualXMLStructure (actual, expected) {
-    let differencesOutput = ''
-    const differences = jsdiff.diffLines(actual, expected).filter(difference => difference.added || difference.removed)
-    const pass = differences.length === 0
+  toEqualXML (actual, expected) {
+    const differencesChecker = new DiffChecker(actual, expected)
 
-    differences.forEach(difference => {
-      const color = difference.added ? 'green' : difference.removed ? 'red' : 'grey'
-
-      differencesOutput += difference.value[color]
-    });
-
-    if (pass) {
+    if (!differencesChecker.hasDifferences) {
       return {
         message: () => `XML structures are equal`,
         pass: true
       }
     } else {
       return {
-        message: () => `XML structures are different:\n${differencesOutput}`,
+        message: () => `XML structures are different:\n${differencesChecker.formattedDifferences}`,
         pass: false
       }
     }
-  },
+  }
 })
