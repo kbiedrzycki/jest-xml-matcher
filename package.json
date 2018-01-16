@@ -1,0 +1,33 @@
+{
+  "name": "jest-xml-matcher",
+  "version": "1.0.0",
+  "description": "Jest matcher to validate xml equality",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbiedrzycki/jest-xml-matcher.git"
+  },
+  "keywords": [
+    "jest",
+    "matcher",
+    "xml",
+    "diff",
+    "equal"
+  ],
+  "author": "Kamil Biedrzycki <biedrzycki.kamil@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kbiedrzycki/jest-xml-matcher/issues"
+  },
+  "homepage": "https://github.com/kbiedrzycki/jest-xml-matcher#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "diff": "^3.4.0"
+  },
+  "peerDependencies": {
+    "jest": "^22.1.1"
+  }
+}
