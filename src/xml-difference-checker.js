@@ -33,6 +33,6 @@ module.exports = class XMLDifferenceChecker {
   }
 
   formatXML (value) {
-    return format.xml(value)
+    return format.xml(value.trim())
   }
 }
