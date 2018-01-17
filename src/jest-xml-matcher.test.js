@@ -11,4 +11,16 @@ describe('jest-xml-matcher', () => {
   it('compares different XML structures', () => {
     expect(xmlOne).not.toEqualXML(xmlTwo)
   })
+
+  describe('one liner check', () => {
+    it('does not find any differences', () => {
+      const xmlOne = `<root></root>`
+      const xmlTwo = `
+        <root>
+        </root>
+      `
+
+      expect(xmlOne).toEqualXML(xmlTwo)
+    })
+  })
 })
