@@ -28,7 +28,7 @@
     "diff": "^3.4.0",
     "pretty-data": "^0.40.0"
   },
-  "peerDependencies": {
+  "devDependencies": {
     "jest": "^22.1.1"
   }
 }
