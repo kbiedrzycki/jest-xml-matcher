@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Jest matcher to validate xml equality",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "jest --watch"
   },
