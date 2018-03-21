@@ -11,7 +11,7 @@ Or using [npm](https://www.npmjs.com/)
 npm install --save-dev jest-xml-matcher
 ```
 
-### Usage
+### Usage with JS
 Simplest way to use matcher with Jest is to modify `setupTestFrameworkScriptFile` configuration part.
 
 To do this, include following part in `package.json`:
@@ -22,7 +22,8 @@ To do this, include following part in `package.json`:
 }
 ```
 
-Also it possible to use test entry file and include module there (as in `setupTests.js` while using [CRA](https://github.com/facebookincubator/create-react-app)):
+### Usage with TS (or JS)
+It possible to use test entry file or spec file and include module there (as in `setupTests.js` while using [CRA](https://github.com/facebookincubator/create-react-app)):
 ```
 require('jest-xml-matcher')
 // or
