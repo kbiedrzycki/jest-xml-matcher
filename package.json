@@ -5,7 +5,8 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "integration-test": "integration-test/run.sh \"$@\""
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,12 @@
     "xmldom": "^0.1.27"
   },
   "devDependencies": {
+    "bats": "^1.1.0",
     "jest": "^24.9.0"
+  },
+  "jest-xml-matcher": {
+    "integrationTestDependencies": {
+      "jest": "^24.9.0"
+    }
   }
 }
