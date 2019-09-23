@@ -5,7 +5,8 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "integration-test": "integration-test/run.sh \"$@\""
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,17 @@
   "homepage": "https://github.com/kbiedrzycki/jest-xml-matcher#readme",
   "dependencies": {
     "colors": "^1.1.2",
-    "diff": "^3.4.0",
-    "pretty-data": "^0.40.0"
+    "diff": "^4.0.1",
+    "xml-crypto": "^1.4.0",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
-    "jest": "^22.1.1"
+    "bats": "^1.1.0",
+    "jest": "^24.9.0"
+  },
+  "jest-xml-matcher": {
+    "integrationTestDependencies": {
+      "jest": "^24.9.0"
+    }
   }
 }

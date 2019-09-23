@@ -1,8 +1,18 @@
-const DiffChecker = require('./xml-difference-checker')
+const {XMLDifferenceChecker, MalformedXMLXMLDifferenceError} = require('./xml-difference-checker')
 
-expect.extend({
+const matchers = {
   toEqualXML (actual, expected) {
-    const differencesChecker = new DiffChecker(actual, expected)
+    let differencesChecker
+    try { differencesChecker = new XMLDifferenceChecker(actual, expected) }
+    catch (e) {
+      if(e instanceof MalformedXMLXMLDifferenceError) {
+        return {
+          pass: !!this.isNot, // fail regardless of whether .not is used
+          message: () => `${e.isPrevious ? 'actual' : 'expected'} value is not valid XML:\n${e.cause.message}}`
+        }
+      }
+      throw e
+    }
 
     if (!differencesChecker.hasDifferences) {
       return {
@@ -16,4 +26,7 @@ expect.extend({
       }
     }
   }
-})
+}
+
+expect.extend(matchers)
+module.exports = matchers

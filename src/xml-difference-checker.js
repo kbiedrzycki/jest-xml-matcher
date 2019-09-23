@@ -1,13 +1,25 @@
 require('colors')
 const jsdiff = require('diff')
-const format = require('pretty-data').pd
+const {normaliseXML, XMLParseError} = require('./xml-normaliser')
 
-module.exports = class XMLDifferenceChecker {
+class MalformedXMLXMLDifferenceError extends Error {
+  constructor(isPrevious, cause) {
+    super()
+    this.isPrevious = !!isPrevious
+    this.cause = cause
+  }
+
+  get message() {
+    return `${this.isPrevious ? 'previous' : 'next'} is not valid XML`
+  }
+}
+
+class XMLDifferenceChecker {
   constructor (previousValue = '', nextValue = '') {
     this.previousValue = previousValue
     this.nextValue = nextValue
-    this.formattedPreviousValue = this.formatXML(this.previousValue)
-    this.formattedNextValue = this.formatXML(this.nextValue)
+    this.formattedPreviousValue = XMLDifferenceChecker.formatXML(this.previousValue, true)
+    this.formattedNextValue = XMLDifferenceChecker.formatXML(this.nextValue, false)
   }
 
   get differences () {
@@ -32,7 +44,17 @@ module.exports = class XMLDifferenceChecker {
     return difference.added || difference.removed
   }
 
-  formatXML (value) {
-    return format.xml(value.trim())
+  static formatXML (value, isPrevious) {
+    try {
+      return normaliseXML(value)
+    }
+    catch (e) {
+      if(e instanceof XMLParseError) {
+        throw new MalformedXMLXMLDifferenceError(isPrevious, e)
+      }
+      throw e
+    }
   }
 }
+
+module.exports = {XMLDifferenceChecker, MalformedXMLXMLDifferenceError}

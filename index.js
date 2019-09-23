@@ -1,1 +1,1 @@
-module.exports = require('./src/jest-xml-matcher')
+require('./src/jest-xml-matcher')
